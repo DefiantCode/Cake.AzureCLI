@@ -13,7 +13,7 @@ namespace Cake.AzureCLI
     public static class AzAliases
     {
         [CakeMethodAlias]
-        [CakeAliasCategory("Login")]
+        [CakeAliasCategory("Azure")]
         public static void AzLogin(this ICakeContext context, string username, string password)
         {
             var az = new AzLogin(context);
@@ -21,7 +21,7 @@ namespace Cake.AzureCLI
         }
 
         [CakeMethodAlias]
-        [CakeAliasCategory("Resource Group")]
+        [CakeAliasCategory("Azure")]
         public static void AzGroupCreate(this ICakeContext context, string name, string location)
         {
             var az = new AzGroupCreate(context);
@@ -29,7 +29,7 @@ namespace Cake.AzureCLI
         }
 
         [CakeMethodAlias]
-        [CakeAliasCategory("Resource Group")]
+        [CakeAliasCategory("Azure")]
         public static bool AzGroupExists(this ICakeContext context, string name)
         {
             var az = new AzGroupExists(context);
@@ -37,7 +37,7 @@ namespace Cake.AzureCLI
         }
 
         [CakeMethodAlias]
-        [CakeAliasCategory("Resource Group")]
+        [CakeAliasCategory("Azure")]
         public static void AzGroupDelete(this ICakeContext context, string name, bool noWait = false, bool confirmYes = true)
         {
             var az = new AzGroupDelete(context);
@@ -45,7 +45,7 @@ namespace Cake.AzureCLI
         }
 
         [CakeMethodAlias]
-        [CakeAliasCategory("Resource Group Deployment")]
+        [CakeAliasCategory("Azure")]
         public static void AzGroupDeploymentCreate(this ICakeContext context, string name, string templateFileOrUri, string parameters, bool validateOnly = false)
         {
             var az = new AzGroupDeploymentCreate(context);

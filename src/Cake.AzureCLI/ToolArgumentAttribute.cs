@@ -27,7 +27,7 @@ namespace Cake.AzureCLI
             ArgumentName = argumentName;
         }
         
-        public static void PopulateArguments<TSettings>(ProcessArgumentBuilder builder, TSettings settings, bool autoFormat = false)
+        public static void PopulateArguments<TSettings>(ProcessArgumentBuilder builder, TSettings settings, bool autoFormat = true)
         {
             foreach (var pinfo in typeof(TSettings).GetTypeInfo().GetProperties())
             {
