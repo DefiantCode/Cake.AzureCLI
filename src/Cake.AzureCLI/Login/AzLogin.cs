@@ -7,7 +7,7 @@ using Cake.Core.Tooling;
 
 namespace Cake.AzureCLI.Login
 {
-    public class AzLogin : AzTool<AzLoginSettings>
+    public class AzLogin : AzTool<AzLoginSettings, AzToolResult>
     {
         public AzLogin(ICakeContext context) : this(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools)
         {

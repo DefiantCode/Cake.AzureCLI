@@ -7,7 +7,7 @@ using Cake.Core.Tooling;
 
 namespace Cake.AzureCLI.Group
 {
-    public class AzGroupDelete : AzTool<AzGroupDeleteSettings>
+    public class AzGroupDelete : AzTool<AzGroupDeleteSettings, AzToolResult>
     {
         public AzGroupDelete(ICakeContext context) : base(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools)
         {

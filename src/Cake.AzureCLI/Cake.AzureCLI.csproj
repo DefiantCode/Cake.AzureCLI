@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.6;net46</TargetFrameworks>
-    <VersionPrefix>0.0.3</VersionPrefix>
-    <VersionSuffix>beta</VersionSuffix>
+    <TargetFrameworks>netstandard1.6</TargetFrameworks>
+    <VersionPrefix></VersionPrefix>
+    <VersionSuffix></VersionSuffix>
     <PackageId>Cake.AzureCLI</PackageId>
   </PropertyGroup>
 

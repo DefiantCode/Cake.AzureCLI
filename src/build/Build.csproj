@@ -3,10 +3,12 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cake.AzureCLI\Cake.AzureCLI.csproj" />
+    <PackageReference Include="Cake.Frosting" Version="0.1.0" />
+    <PackageReference Include="DefiantCode.Cake.Frosting.DotNetCore" Version="0.2.0" />
   </ItemGroup>
 
 </Project>

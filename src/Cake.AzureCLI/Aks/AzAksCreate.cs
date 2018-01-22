@@ -7,7 +7,7 @@ using Cake.Core.Tooling;
 
 namespace Cake.AzureCLI.Aks
 {
-    public class AzAksCreate : AzTool<AzAksCreateSettings>
+    public class AzAksCreate : AzTool<AzAksCreateSettings, AzToolResult>
     {
         public AzAksCreate(ICakeContext context) : this(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools)
         {

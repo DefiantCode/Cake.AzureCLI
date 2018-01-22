@@ -7,7 +7,7 @@ using Cake.Core.Tooling;
 
 namespace Cake.AzureCLI.Group
 {
-    public class AzGroupCreate : AzTool<AzGroupCreateSettings>
+    public class AzGroupCreate : AzTool<AzGroupCreateSettings, AzToolResult>
     {
         public AzGroupCreate(ICakeContext context) : base(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools)
         {

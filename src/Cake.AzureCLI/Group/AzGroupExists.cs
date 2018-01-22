@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Cake.AzureCLI.Group
 {
-    public class AzGroupExists : AzTool<AzGroupExistsSettings>
+    public class AzGroupExists : AzTool<AzGroupExistsSettings, AzToolResult>
     {
         public AzGroupExists(ICakeContext context) : base(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools)
         {

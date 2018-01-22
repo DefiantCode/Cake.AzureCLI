@@ -14,10 +14,10 @@ namespace Cake.AzureCLI
     {
         [CakeMethodAlias]
         [CakeAliasCategory("Azure")]
-        public static void AzLogin(this ICakeContext context, string username, string password)
+        public static void AzLogin(this ICakeContext context, string username, string password, bool isServicePrincipal = false, string tenantId = null)
         {
             var az = new AzLogin(context);
-            az.Login(new AzLoginSettings { Username = username, Password = password });
+            az.Login(new AzLoginSettings { Username = username, Password = password, ServicePrincipal = isServicePrincipal, Tenant = tenantId });
         }
 
         [CakeMethodAlias]
@@ -46,10 +46,10 @@ namespace Cake.AzureCLI
 
         [CakeMethodAlias]
         [CakeAliasCategory("Azure")]
-        public static void AzGroupDeploymentCreate(this ICakeContext context, string name, string templateFileOrUri, string parameters, bool validateOnly = false)
+        public static AzToolResult AzGroupDeploymentCreate(this ICakeContext context, string name, string templateFileOrUri, string parameters, string parameterOverrides = null, bool validateOnly = false)
         {
             var az = new AzGroupDeploymentCreate(context);
-            var settings = new AzGroupDeploymentCreateSettings { ResourceGroup = name, Parameters = parameters };
+            var settings = new AzGroupDeploymentCreateSettings { ResourceGroup = name, ParametersJson = parameters, ParameterOverrides = parameterOverrides };
             if (Uri.TryCreate(templateFileOrUri, UriKind.Absolute, out Uri result))
                 settings.TemplateUri = result.AbsoluteUri;
             else
@@ -59,6 +59,9 @@ namespace Cake.AzureCLI
                 az.Validate(settings);
             else
                 az.Create(settings);
+
+            return az.ToolResult;
+
         }
 
     }

@@ -23,9 +23,13 @@
         public bool NoWait { get; set; }
 
         /// <summary>
-        /// Supply deployment parameter values.
+        /// Raw json or path to json parameters file. 
         /// </summary>
-        public string Parameters { get; set; }
+        [ToolArgument("parameters")]
+        public string ParametersJson { get; set; }
+
+        [ToolArgument("parameters")]
+        public string ParameterOverrides { get; set; }
 
         /// <summary>
         /// A template file path in the file system.

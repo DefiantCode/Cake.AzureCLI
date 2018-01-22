@@ -3,15 +3,19 @@ using Cake.Core.IO;
 using Cake.Core.Tooling;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
 namespace Cake.AzureCLI
 {
-    public abstract class AzTool<TSettings> : Tool<TSettings> where TSettings : AzSettings
+    public abstract class AzTool<TSettings, TResult> : Tool<TSettings> where TSettings : AzSettings where TResult : AzToolResult, new()
     {
+        public TResult ToolResult { get; private set; }
+
         protected AzTool(IFileSystem fileSystem, ICakeEnvironment environment, IProcessRunner processRunner, IToolLocator tools) : base(fileSystem, environment, processRunner, tools)
         {
+            ToolResult = new TResult();
         }
 
         /// <summary>
@@ -44,7 +48,21 @@ namespace Cake.AzureCLI
         /// <param name="arguments">The arguments.</param>
         protected void RunCommand(TSettings settings, ProcessArgumentBuilder arguments)
         {
-            Run(settings, arguments, null, null);
+            //redirect stdout is output is json or not set
+            if ((settings.Output.HasValue && settings.Output.Value == AzOutputFormats.json) || !settings.Output.HasValue)
+            {
+                Run(settings, arguments, new ProcessSettings { RedirectStandardOutput = true }, p =>
+                {
+                    p.WaitForExit();
+
+                    foreach (var line in p.GetStandardOutput())
+                    {
+                        ToolResult.Raw += line;
+                    }
+                });
+            }
+            else
+                Run(settings, arguments, null, null);
         }
 
         /// <summary>
